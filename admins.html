@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Care Center</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+
+  <style>
+  /* Hero Div */
+.hero-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('static/bg.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-color: #fff; /* Fallback color in case the image doesn't load */
+    padding: 40px;
+}
+
+.hero-container {
+    text-align: center; /* Align text to center */
+    max-width: 800px; /* Optional: Adjust max width */
+    padding: 20px;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2e4e27; /* Customize color */
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+.hero-text h1 span {
+    color: #27ae60; /* Green highlight */
+}
+
+.hero-btn {
+    background-color: #;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.hero-btn:hover {
+    background-color: #57a65a;
+}
+
+/* Navbar Styles */66bb6a
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+/* Content Wrapper */
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo */
+
+/* Navbar Styles */
+.navbar {
+    background-color: #69d0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+/* Content Wrapper */
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo */
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #2e4e27;
+}
+
+/* Navigation Right Container */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between nav links and login button */
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #0e1632;
+    font-size: 16px;
+    padding: 10px 20px; /* Ensures all links have the same size */
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
+}
+
+.nav-links li a:hover {
+    color: #fff;
+    background-color: #2e4e27; /* Highlight background on hover */
+}
+
+.login-button .btn {
+  border: 1px solid #dc3545;
+    color: #dc3545;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+
+}
+
+.login-button .btn:hover {
+   background-color: #dc3545;
+   color:#fff;
+
+}
+
+/* Alignment */
+.nav-right {
+    justify-content: flex-end; /* Aligns all items to the right */
+}
+
+/* Enable smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and name */
+}
+
+        .myimg {
+            width: 50px;
+            height: 50px;
+            border: 2px solid black;
+            border-radius: 25px;
+        }
+
+   /* Base Styles */
+html, body {
+    scroll-behavior: smooth;
+    height: 100%;
+    margin: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1; /* Pushes the footer to the bottom */
+}
+
+/* Footer Styles */
+ .footer {
+            background-color: #69d0e0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color: #0e1632;
+            text-align: left;
+        }
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .footer-section {
+            margin-bottom: 20px;
+        }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .logo {
+            height: 50px;
+        }
+        .logo-img {
+    height: 40px; /* Adjust this as needed */
+    width: auto;  /* Maintains the aspect ratio */
+}
+
+        .links-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 200px;
+        }
+        .links-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .links-section ul li {
+            margin-bottom: 10px;
+        }
+        .links-section ul li a {
+            text-decoration: none;
+            color: #0e1632;
+        }
+        .links-section ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+            font-size: 14px;
+        }
+        .footer-bottom ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            margin: 0;
+        }
+        .footer-bottom ul li a {
+            text-decoration: none;
+            color: #0e1632;
+        }
+        .footer-bottom ul li a:hover {
+            text-decoration: underline;
+        }
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .social-links li {
+            margin-bottom: 10px;
+        }
+        .social-links li:first-child {
+            margin-bottom: 15px; /* Adds space below "Follow Us" */
+            font-weight: bold;
+        }
+        .social-links .icon-list {
+            display: flex;
+            gap: 20px;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            display: inline-block;
+            color: #0e1632;
+        }
+        .social-icon:hover {
+            color: #007bff;
+        }
+   h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.3rem;
+  font-weight: 600;
+  text-align: center;
+  color: #0078D4; /* Bright blue */
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="content">
+        <div class="logo">
+            <!-- Add your logo image here -->
+            <img src="static/img.png" alt="MediWise Logo" class="logo-img">
+            <h1>MediWise</h1>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/developer">How it works?</a></li>
+            </ul>
+            <div class="login-button">
+  <a href="/login-signup" class="btn">Logout</a>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <div>
+
+
+    <h1>ADMIN</h1>
+
+
+</div>
+
+ <footer class="footer">
+        <div class="container">
+            <div class="footer-section logo-section">
+                <img src="static/img.png" alt="Health Logo" class="logo">
+                <span>MediWise</span>
+            </div>
+
+            <div class="footer-section links-section">
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                <li><a href="#">How It Works</a></li>
+                <li><a href="#">FAQ’s</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Get A Diagnosis</a></li>
+                <li><a href="#">Contact Us</a></li>
+                </ul>
+                <ul>
+                   <li><a href="#">Our Services</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                </ul>
+                <ul class="social-links">
+                    <li>Follow Us</li>
+                    <li class="icon-list">
+                        <a href="#"><i class="fab fa-facebook social-icon"></i></a>
+                        <a href="#"><i class="fab fa-twitter social-icon"></i></a>
+                        <a href="#"><i class="fab fa-linkedin social-icon"></i></a>
+                        <a href="#"><i class="fab fa-instagram social-icon"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <p> 2024 Smart Medicine Solutions. All rights reserved</p>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

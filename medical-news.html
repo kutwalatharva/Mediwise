@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical News Feed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c5282;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f7fafc;
+            padding: 20px;
+        }
+
+        h2.section-title {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* News Grid */
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .news-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-image {
+            height: 180px;
+            background-color: var(--border-color);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-content {
+            padding: 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-meta {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .news-source {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .news-title {
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .news-description {
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
+            flex: 1;
+            font-size: 0.95rem;
+        }
+
+        .news-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            align-self: flex-start;
+            font-size: 0.9rem;
+        }
+
+        .news-link:hover {
+            background-color: #1a365d;
+        }
+
+        /* Loading and error states */
+        .loading, .error {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+
+        .loading i, .error i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .loading i {
+            color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+
+        .error i {
+            color: #e53e3e;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Medical News Section -->
+    <section class="news-container">
+        <h2 class="section-title">Latest Medical News</h2>
+        <div id="news-container">
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Loading latest medical news...</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // DOM Elements
+        const newsContainer = document.getElementById('news-container');
+
+        // Load News Function
+        function loadNews() {
+            showLoading();
+            
+            fetch("/medical-news")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'ok' && data.articles.length > 0) {
+                        displayNews(data.articles);
+                    } else {
+                        showError('No articles found. Please try again later.');
+                    }
+                })
+                .catch(error => {
+                    showError('Error loading news. Please try again later.');
+                    console.error('Error:', error);
+                });
+        }
+
+        // Display News Function
+        function displayNews(articles) {
+            let newsHTML = '<div class="news-grid">';
+            
+            articles.forEach(article => {
+                const imageUrl = article.urlToImage || '/api/placeholder/400/200';
+                const title = article.title || 'No title available';
+                const description = article.description || 'No description available';
+                const source = article.source.name || 'Unknown source';
+                const publishedAt = formatDate(article.publishedAt);
+                const url = article.url || '#';
+                
+                newsHTML += `
+                    <article class="news-item">
+                        <div class="news-image" style="background-image: url('${imageUrl}')"></div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-source">${source}</span>
+                                <span>${publishedAt}</span>
+                            </div>
+                            <h3 class="news-title">${title}</h3>
+                            <p class="news-description">${description}</p>
+                            <a href="${url}" target="_blank" class="news-link">Read Article</a>
+                        </div>
+                    </article>
+                `;
+            });
+            
+            newsHTML += '</div>';
+            newsContainer.innerHTML = newsHTML;
+        }
+
+        // Helper Functions
+        function showLoading() {
+            newsContainer.innerHTML = `
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>Loading latest medical news...</p>
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            newsContainer.innerHTML = `
+                <div class="error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Unknown date';
+            
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+            } catch (e) {
+                return 'Unknown date';
+            }
+        }
+
+        // Load news on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNews();
+        });
+    </script>
+</body>
+</html>

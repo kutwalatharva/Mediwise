@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Care Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+
+  <style>
+  /* Hero Div */
+.her-div {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+    padding: 10px;
+}
+
+/* Hero Container */
+.her-container {
+    z-index: 2;
+    margin-top:10px;
+    border-bottom: 2px solid white;
+    text-align: center;
+    max-width: 999px;
+    padding: 50px;
+}
+
+/* Hero Text */
+.her-text p {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+     margin-top: 30px;
+}
+
+.her-text span {
+    z-index: 2;
+    color: #27ae60; /* Green highlight */
+}
+.her-text h1 {
+    z-index: 2;
+    color: #ffffff; /* Green highlight */
+    font-size: 3.0rem; /* Adjust the size as needed */
+    font-weight: bold; /* Makes text bold */
+}
+
+
+/* Hero Button */
+.her-btn {
+    background: #27ae60;
+    color: white;
+    padding: 14px 36px;
+    font-size: 1.0rem;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex; /* Fixes centering issue */
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid transparent;
+    margin: 20px auto; /* Centers the button */
+}
+
+/* Button Hover Effect */
+.her-btn:hover {
+    transform: scale(1.08);
+
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .her-text p {
+        font-size: 1.1rem;
+        padding: 0 15px;
+    }
+
+    .her-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .her-text p {
+        font-size: 1rem;
+    }
+
+    .her-btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
+}
+
+  /* Navbar Styles */
+        .navbar {
+             border-bottom: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #000000, #2C2C2C);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #F8F9FA;
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .logo img:hover {
+            transform: rotate(360deg);
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #F8F9FA;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            width: 0;
+            height: 3px;
+            background: #00E5FF;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-button {
+            background: #22c55e ;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-left: 20px;
+        }
+
+        .nav-button:hover {
+            background: #22c55e;
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease-out;
+            padding: 2rem;
+            color: #fff;
+        }
+/* Footer Styles */
+        .footer {
+             border-top: 2px solid white;
+            background: linear-gradient(135deg, #000000, #2C2C2C);
+            backdrop-filter: blur(10px);
+            color: #F8F9FA;
+            padding: 50px 10%;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            margin-top: auto;
+            z-index: 2;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            transition: transform 0.3s ease-in-out;
+            padding: 10px;
+        }
+
+        .footer-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .footer h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer h3::after {
+            content: "";
+            width: 40px;
+            height: 3px;
+            background: #00E5FF;
+            display: block;
+            margin: 5px auto 0;
+            transition: width 0.3s;
+        }
+
+        .footer h3:hover::after {
+            width: 80px;
+        }
+
+        .footer p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .footer a {
+            color: #F8F9FA;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out, transform 0.2s;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .footer a:hover {
+            color: #00E5FF;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            font-size: 22px;
+            color: #F8F9FA;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.3) rotate(10deg);
+            color: #00E5FF;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+            animation: fadeIn 2s;
+        }
+
+        /* Remove Bullets from Quick Links */
+        .quick-links {
+            list-style: none; /* Remove bullets */
+            padding: 0;
+            margin: 0;
+        }
+
+        .quick-links li {
+            margin: 10px 0; /* Add spacing between links */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .team, .feature-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .member, .feature-card {
+                max-width: 100%;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+                height: auto;
+            }
+
+            .nav-links {
+                margin-top: 10px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-button {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+
+/* Reset and Base Styles */
+       * {
+            scroll-behavior: smooth; /* Smooth scrolling */
+            transition: all 0.4s ease-in-out; /* Smooth transitions */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('/static/l5.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+
+        /* Add your existing CSS here */
+
+      #suggestion-box {
+          position: absolute;
+          background-color: black;
+          border: 1px solid #ccc;
+          z-index: 1000;
+          width: 100%;
+          max-height: 150px;
+          overflow-y: auto;
+      }
+
+      #suggestion-box div {
+          padding: 8px;
+          cursor: pointer;
+      }
+
+      #suggestion-box div:hover {
+          background-color:orange;
+      }
+
+      .form-group {
+          position: relative;
+      }
+
+
+    </style>
+</head>
+<body>
+
+
+
+ <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="static/img.png" alt="MediWise Logo">MediWise
+
+        </a>
+        <ul class="nav-links">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/askAI">Chatbot</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">News</a></li>
+            <li><a href="/developer">How It Works</a></li>
+        </ul>
+        <a href="/login-signup" class="nav-button">Logout</a>
+    </nav>
+
+
+
+
+    <div class="her-div">
+    <div class="her-container">
+        <!-- Text Section -->
+        <div class="her-text">
+            <h1><span>Revolutionizing Healthcare with<br>Smart Medicine Solutions</span></h1>
+           <p>Get expert medicine recommendations powered by cutting-edge AI. Our platform analyzes your symptoms to offer personalized, accurate solutions. Make better health decisions with ease and confidence, anytime, anywhere. Join us in shaping a healthier tomorrow.</p>
+            <a href="#services-section" class="her-btn">Get Services</a>
+        </div>
+    </div>
+</div>
+
+<div id="services-section" style="width: 90%; max-width: 1000px; min-height: 100vh; padding: 40px; z-index: 2; margin-left: auto; margin-right: auto;">
+
+    <h1 class="mt-4 my-4 text-center" style="color: #27ae60;font-size: 3.0rem;font-weight: bold;">Medicine Recommendation System</h1>
+
+    <!-- Input Container - Fixed size with blur effect -->
+    <div class="container my-4 mt-4" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); color: white; border-radius: 15px; padding: 40px; z-index: 2; height: 250px; width: 100%; max-width: 900px; margin-left: 10px; margin-right: 10px;">
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="symptoms">Select Symptoms:</label>
+                <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="type symptoms such as itching, sleeping, aching etc">
+            </div>
+
+            <!-- Display the transcribed text here -->
+            <div name="mysysms" id="transcription"></div>
+
+            {% if message %}
+            <p>{{ message }}</p>
+            {% endif %}
+            <br>
+
+            <button
+                type="submit"
+                class="btn btn-lg"
+                style="background-color: #88D66C; color: #FFFFFF; width: 100%; padding: 8px; margin-bottom: 5px; border: none; border-radius: 5px; z-index: 2;">
+                Predict
+            </button>
+        </form>
+    </div>
+
+    {% if predicted_disease %}
+
+    <!-- Results -->
+    <h1 class="text-center my-4 mt-4" style="color: #27ae60;font-size: 3.0rem;font-weight: bold;">
+    Our AI System Results
+</h1>
+
+
+    <!-- Results Container - Fixed size with blur effect -->
+   <div class="container" style="border-radius: 15px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); width: 90%; max-width: 1000px; height: 350px; margin-left: 50px; margin-right: 50px; overflow: hidden;">
+
+
+        <div id="resultSlider" class="carousel slide" data-bs-ride="carousel" style="height: 100%;">
+            <div class="carousel-inner" style="height: 100%;">
+                <!-- Disease Slide -->
+                <div class="carousel-item active" style="height: 100%;">
+                    <div class="result-slide" style="text-align: center; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <h3 style="color: white;">Predicted Disease</h3>
+                        <p style="color: white;">{{ predicted_disease }}</p>
+                    </div>
+                </div>
+
+                <!-- Description Slide -->
+                <div class="carousel-item" style="height: 100%;">
+                    <div class="result-slide" style="text-align: center; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center; overflow-y: auto;">
+                        <h3 style="color: white;">Description</h3>
+                        <p style="color: white;">{{ dis_des }}</p>
+                    </div>
+                </div>
+
+                <!-- Precaution Slide -->
+                <div class="carousel-item" style="height: 100%;">
+                    <div class="result-slide" style="text-align: center; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center; overflow-y: auto;">
+                        <h3 style="color: white;">Precaution</h3>
+                        <ul style="list-style-position: inside; padding-left: 0; color: white;">
+                            {% for i in my_precautions %}
+                            <li>{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Medications Slide -->
+                <div class="carousel-item" style="height: 100%;">
+                    <div class="result-slide" style="text-align: center; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center; overflow-y: auto;">
+                        <h3 style="color: white;">Medications</h3>
+                        <ul style="list-style-position: inside; padding-left: 0;color: white;" >
+                            {% for i in medications %}
+                            <li>{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Workouts Slide -->
+                <div class="carousel-item" style="height: 100%;">
+                    <div class="result-slide" style="text-align: center; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center; overflow-y: auto;">
+                        <h3 style="color: white;">Workouts</h3>
+                        <ul style="list-style-position: inside; padding-left: 0;color: white;">
+                            {% for i in workout %}
+                            <li>{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Diets Slide -->
+                <div class="carousel-item" style="height: 100%;">
+                    <div class="result-slide" style="text-align: center; padding: 20px; height: 100%; display: flex; flex-direction: column; justify-content: center; overflow-y: auto;">
+                        <h3 style="color: white;">Diets</h3>
+                        <ul style="list-style-position: inside; padding-left: 0; color: white;">
+                            {% for i in my_diet %}
+                            <li>{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#resultSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#resultSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</div>
+
+ <script>
+        const symptomsList = [
+            "itching", "skin_rash", "nodal_skin_eruptions", "continuous_sneezing", "shivering",
+            "chills", "joint_pain", "stomach_pain", "acidity", "ulcers_on_tongue", "muscle_wasting",
+            "vomiting", "burning_micturition", "spotting_urination", "fatigue", "weight_gain",
+            "anxiety", "cold_hands_and_feets", "mood_swings", "weight_loss", "restlessness",
+            "lethargy", "patches_in_throat", "irregular_sugar_level", "cough", "high_fever",
+            "sunken_eyes", "breathlessness", "sweating", "dehydration", "indigestion", "headache",
+            "yellowish_skin", "dark_urine", "nausea", "loss_of_appetite", "pain_behind_the_eyes",
+            "back_pain", "constipation", "abdominal_pain", "diarrhoea", "mild_fever", "yellow_urine",
+            "yellowing_of_eyes", "acute_liver_failure", "fluid_overload", "swelling_of_stomach",
+            "swelled_lymph_nodes", "malaise", "blurred_and_distorted_vision", "phlegm",
+            "throat_irritation", "redness_of_eyes", "sinus_pressure", "runny_nose", "congestion",
+            "chest_pain", "weakness_in_limbs", "fast_heart_rate", "pain_during_bowel_movements",
+            "pain_in_anal_region", "bloody_stool", "irritation_in_anus", "neck_pain", "dizziness",
+            "cramps", "bruising", "obesity", "swollen_legs", "swollen_blood_vessels",
+            "puffy_face_and_eyes", "enlarged_thyroid", "brittle_nails", "swollen_extremeties",
+            "excessive_hunger", "extra_marital_contacts", "drying_and_tingling_lips", "slurred_speech",
+            "knee_pain", "hip_joint_pain", "muscle_weakness", "stiff_neck", "swelling_joints",
+            "movement_stiffness", "spinning_movements", "loss_of_balance", "unsteadiness",
+            "weakness_of_one_body_side", "loss_of_smell", "bladder_discomfort", "foul_smell_of_urine",
+            "continuous_feel_of_urine", "passage_of_gases", "internal_itching", "toxic_look_(typhos)",
+            "depression", "irritability", "muscle_pain", "altered_sensorium", "red_spots_over_body",
+            "belly_pain", "abnormal_menstruation", "dischromic_patches", "watering_from_eyes",
+            "increased_appetite", "polyuria", "family_history", "mucoid_sputum", "rusty_sputum",
+            "lack_of_concentration", "visual_disturbances", "receiving_blood_transfusion",
+            "receiving_unsterile_injections", "coma", "stomach_bleeding", "distention_of_abdomen",
+            "history_of_alcohol_consumption", "fluid_overload.1", "blood_in_sputum",
+            "prominent_veins_on_calf", "palpitations", "painful_walking", "pus_filled_pimples",
+            "blackheads", "scurring", "skin_peeling", "silver_like_dusting", "small_dents_in_nails",
+            "inflammatory_nails", "blister", "red_sore_around_nose", "yellow_crust_ooze"
+        ];
+
+        function showSuggestions() {
+            const input = document.getElementById("symptoms").value.toLowerCase();
+            const suggestions = symptomsList.filter(symptom => symptom.includes(input));
+            const suggestionBox = document.getElementById("suggestion-box");
+
+            suggestionBox.innerHTML = "";
+            suggestions.forEach(symptom => {
+                const div = document.createElement("div");
+                div.textContent = symptom;
+                div.onclick = function() {
+                    document.getElementById("symptoms").value = symptom;
+                    suggestionBox.innerHTML = "";
+                };
+                suggestionBox.appendChild(div);
+            });
+        }
+    </script>
+
+ <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About MediWise</h3>
+                <p>Your trusted partner in AI-driven healthcare solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="quick-links">
+                    <li><a href="/home">Home</a></li>
+                     <li><a href="/askAI">Chatbot</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">News</a></li>
+                    <li><a href="/developer">How it Works </a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 MediWise. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+
+</html>

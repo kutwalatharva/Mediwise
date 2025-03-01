@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            scroll-behavior: smooth; /* Smooth scrolling */
+            transition: all 0.4s ease-in-out; /* Smooth transitions */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('/static/l5.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+    border-bottom: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: linear-gradient(135deg, #000000, #2C2C2C);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 80px; /* Increased height */
+}
+
+/* Adding blur effect at the bottom */
+.navbar::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* Adjust distance from navbar */
+    left: 0;
+    width: 100%;
+    height: 20px; /* Height of the blur */
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+    filter: blur(10px);
+    z-index: -1; /* Places it behind the navbar */
+}
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #F8F9FA;
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .logo img:hover {
+            transform: rotate(360deg);
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #F8F9FA;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            width: 0;
+            height: 3px;
+            background: #00E5FF;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-button {
+            background: #22c55e ;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-left: 20px;
+        }
+
+        .nav-button:hover {
+            background: #22c55e ;
+            transform: scale(1.1);
+        }
+
+        /* News Grid */
+        .news-container {
+            z-index: 2;
+            max-width: 1200px;
+            margin-top:100px;
+            margin-bottom:70px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .news-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-image {
+            height: 180px;
+            background-color: #e2e8f0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-content {
+            padding: 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+
+        .news-meta {
+            color: #ffffff;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .news-source {
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .news-title {
+            font-color:#ffffff;
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .news-description {
+            color: #ffffff;
+            margin-bottom: 1.25rem;
+            flex: 1;
+            font-size: 0.95rem;
+        }
+
+        .news-link {
+            display: inline-block;
+            background-color:#22c55e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            align-self: flex-start;
+            font-size: 0.9rem;
+        }
+
+        .news-link:hover {
+            background-color: #1a365d;
+        }
+
+        /* Loading and error states */
+        .loading, .error {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+
+        .loading i, .error i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .loading i {
+            color: #2c5282;
+            animation: spin 3s linear infinite;
+        }
+
+        .error i {
+            color: #e53e3e;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer Styles */
+        .footer {
+         border-top: 2px solid white;
+           background: linear-gradient(135deg, #000000, #2C2C2C);
+            backdrop-filter: blur(10px);
+            color: #F8F9FA;
+            padding: 50px 10%;
+            text-align: center;
+            position: relative;
+            width: 100%;
+            margin-top: auto;
+            z-index: 2;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            transition: transform 0.3s ease-in-out;
+            padding: 10px;
+        }
+
+        .footer-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .footer h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer h3::after {
+            content: "";
+            width: 40px;
+            height: 3px;
+            background: #00E5FF;
+            display: block;
+            margin: 5px auto 0;
+            transition: width 0.3s;
+        }
+
+        .footer h3:hover::after {
+            width: 80px;
+        }
+
+        .footer p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .footer a {
+            color: #F8F9FA;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out, transform 0.2s;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .footer a:hover {
+            color: #00E5FF;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            font-size: 22px;
+            color: #F8F9FA;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.3) rotate(10deg);
+            color: #00E5FF;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+            animation: fadeIn 2s;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Remove Bullets from Quick Links */
+        .quick-links {
+            list-style: none; /* Remove bullets */
+            padding: 0;
+            margin: 0;
+        }
+
+        .quick-links li {
+            margin: 10px 0; /* Add spacing between links */
+        }
+
+        /* Refresh Button */
+        .refresh-button {
+            display: block;
+            background-color: #22c55e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 30px auto 10px;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .refresh-button:hover {
+            background-color: #16a34a;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .refresh-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .refresh-button i {
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4.5rem;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+                height: auto;
+            }
+
+            .nav-links {
+                margin-top: 10px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-button {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="static/img.png" alt="MediWise Logo"> MediWise
+        </a>
+        <ul class="nav-links">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/askAI">Chatbot</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">News</a></li>
+            <li><a href="/developer">How It Works</a></li>
+        </ul>
+        <a href="/login-signup" class="nav-button">Logout</a>
+    </nav>
+
+     <section class="news-container">
+        <h2 class="section-title">NewsLetters</h2>
+        <div id="news-container">
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Loading latest medical news...</p>
+            </div>
+        </div>
+        <button id="refresh-button" class="refresh-button">
+            <i class="fas fa-sync-alt"></i> Refresh News
+        </button>
+    </section>
+
+    <script>
+        // DOM Elements
+        const newsContainer = document.getElementById('news-container');
+        const refreshButton = document.getElementById('refresh-button');
+
+        // Load News Function
+        function loadNews() {
+            showLoading();
+
+            fetch("/medical-news")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'ok' && data.articles.length > 0) {
+                        displayNews(data.articles);
+                    } else {
+                        showError('No articles found. Please try again later.');
+                    }
+                })
+                .catch(error => {
+                    showError('Error loading news. Please try again later.');
+                    console.error('Error:', error);
+                });
+        }
+
+        // Display News Function
+        function displayNews(articles) {
+            let newsHTML = '<div class="news-grid">';
+
+            articles.forEach(article => {
+                const imageUrl = article.urlToImage || '/api/placeholder/400/200';
+                const title = article.title || 'No title available';
+                const description = article.description || 'No description available';
+                const source = article.source.name || 'Unknown source';
+                const publishedAt = formatDate(article.publishedAt);
+                const url = article.url || '#';
+
+                newsHTML += `
+                    <article class="news-item">
+                        <div class="news-image" style="background-image: url('${imageUrl}')"></div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-source">${source}</span>
+                                <span>${publishedAt}</span>
+                            </div>
+                            <h3 class="news-title">${title}</h3>
+                            <p class="news-description">${description}</p>
+                            <a href="${url}" target="_blank" class="news-link">Read Article</a>
+                        </div>
+                    </article>
+                `;
+            });
+
+            newsHTML += '</div>';
+            newsContainer.innerHTML = newsHTML;
+        }
+
+        // Helper Functions
+        function showLoading() {
+            newsContainer.innerHTML = `
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>Loading latest medical news...</p>
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            newsContainer.innerHTML = `
+                <div class="error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Unknown date';
+
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+            } catch (e) {
+                return 'Unknown date';
+            }
+        }
+
+        // Add refresh button functionality
+        refreshButton.addEventListener('click', function() {
+            // Add rotation animation to the refresh icon
+            const refreshIcon = refreshButton.querySelector('i');
+            refreshIcon.style.animation = 'spin 1s linear infinite';
+
+            // Disable the button to prevent multiple clicks
+            refreshButton.disabled = true;
+
+            // Load news
+            loadNews();
+
+            // After a short delay, reset the button
+            setTimeout(() => {
+                refreshIcon.style.animation = '';
+                refreshButton.disabled = false;
+            }, 1500);
+        });
+
+        // Load news on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNews();
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About MediWise</h3>
+                <p>Your trusted partner in AI-driven healthcare solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="quick-links">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/askAI">Chatbot</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/blog">News</a></li>
+                    <li><a href="/developer">How It Works</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 MediWise. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+</html>
